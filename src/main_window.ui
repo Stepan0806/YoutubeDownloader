@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>817</width>
+    <height>591</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>YoutubeDownloader</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>img/icon.ico</normaloff>img/icon.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">.MainWindow {
+     
+	background-color: rgb(255, 255, 255);
+}</string>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>15</number>
+    </property>
+    <property name="leftMargin">
+     <number>20</number>
+    </property>
+    <property name="topMargin">
+     <number>20</number>
+    </property>
+    <property name="rightMargin">
+     <number>20</number>
+    </property>
+    <property name="bottomMargin">
+     <number>20</number>
+    </property>
+    <item>
+     <widget class="QGroupBox" name="url_group_box">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#url_group_box {
+font: 10pt &quot;MS Shell Dlg 2&quot;;
+}</string>
+      </property>
+      <property name="title">
+       <string>1. Type video URL and press Enter</string>
+      </property>
+      <layout class="QHBoxLayout" name="url_input_layout">
+       <property name="leftMargin">
+        <number>3</number>
+       </property>
+       <property name="rightMargin">
+        <number>3</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="url">
+         <property name="styleSheet">
+          <string notr="true">padding: 5px;
+padding-right: 0px;</string>
+         </property>
+         <property name="text">
+          <string>URL:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="url_input">
+         <property name="styleSheet">
+          <string notr="true">margin-right: 5px;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="video_info_group_box">
+      <property name="styleSheet">
+       <string notr="true">#video_info_group_box {
+font: 10pt &quot;MS Shell Dlg 2&quot;;
+}</string>
+      </property>
+      <property name="title">
+       <string>2. Wait until program found video</string>
+      </property>
+      <layout class="QVBoxLayout" name="video_info_layout">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="video_img">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap>img/icon.ico</pixmap>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="video_title">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;
+padding: 1px;</string>
+         </property>
+         <property name="text">
+          <string>Video Title</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="save_group_box">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#save_group_box {
+font: 10pt &quot;MS Shell Dlg 2&quot;;
+}</string>
+      </property>
+      <property name="title">
+       <string>3. Select video/audio resolution and click save button</string>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <layout class="QVBoxLayout" name="save_layout">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="save_select_layout">
+         <property name="spacing">
+          <number>3</number>
+         </property>
+         <item>
+          <widget class="QComboBox" name="download_choose">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="file_name_label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">padding-left: 25px;
+</string>
+           </property>
+           <property name="text">
+            <string>file name</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="save_button">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Save</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progress_bar">
+         <property name="value">
+          <number>24</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>817</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuLanguage">
+    <property name="title">
+     <string>Language</string>
+    </property>
+    <addaction name="action_english"/>
+    <addaction name="action_ukraine"/>
+   </widget>
+   <addaction name="menuLanguage"/>
+  </widget>
+  <action name="action_english">
+   <property name="text">
+    <string>English</string>
+   </property>
+  </action>
+  <action name="action_ukraine">
+   <property name="text">
+    <string>Ukraine</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
