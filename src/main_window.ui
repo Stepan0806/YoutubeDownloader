@@ -123,7 +123,13 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
         <number>10</number>
        </property>
        <item>
-        <widget class="QLabel" name="video_img">
+        <widget class="QLabel" name="video_thumbnail">
+         <property name="minimumSize">
+          <size>
+           <width>1</width>
+           <height>1</height>
+          </size>
+         </property>
          <property name="styleSheet">
           <string notr="true"/>
          </property>
@@ -131,7 +137,10 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap>img/icon.ico</pixmap>
+          <pixmap>img/Youtube.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>false</bool>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -151,7 +160,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
 padding: 1px;</string>
          </property>
          <property name="text">
-          <string>Video Title</string>
+          <string>Type URL</string>
          </property>
         </widget>
        </item>
@@ -224,7 +233,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
 </string>
            </property>
            <property name="text">
-            <string>file name</string>
+            <string/>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -249,7 +258,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
        <item>
         <widget class="QProgressBar" name="progress_bar">
          <property name="value">
-          <number>24</number>
+          <number>0</number>
          </property>
         </widget>
        </item>

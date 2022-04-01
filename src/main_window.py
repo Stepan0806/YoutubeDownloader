@@ -19,9 +19,9 @@ class Ui_MainWindow(object):
         icon.addPixmap(QtGui.QPixmap("img/icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(".MainWindow {\n"
-                                 "     \n"
-                                 "    background-color: rgb(255, 255, 255);\n"
-                                 "}")
+"     \n"
+"    background-color: rgb(255, 255, 255);\n"
+"}")
         MainWindow.setDocumentMode(False)
         MainWindow.setTabShape(QtWidgets.QTabWidget.Rounded)
         MainWindow.setUnifiedTitleAndToolBarOnMac(False)
@@ -39,15 +39,15 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.url_group_box.sizePolicy().hasHeightForWidth())
         self.url_group_box.setSizePolicy(sizePolicy)
         self.url_group_box.setStyleSheet("#url_group_box {\n"
-                                         "font: 10pt \"MS Shell Dlg 2\";\n"
-                                         "}")
+"font: 10pt \"MS Shell Dlg 2\";\n"
+"}")
         self.url_group_box.setObjectName("url_group_box")
         self.url_input_layout = QtWidgets.QHBoxLayout(self.url_group_box)
         self.url_input_layout.setContentsMargins(3, -1, 3, -1)
         self.url_input_layout.setObjectName("url_input_layout")
         self.url = QtWidgets.QLabel(self.url_group_box)
         self.url.setStyleSheet("padding: 5px;\n"
-                               "padding-right: 0px;")
+"padding-right: 0px;")
         self.url.setObjectName("url")
         self.url_input_layout.addWidget(self.url)
         self.url_input = QtWidgets.QLineEdit(self.url_group_box)
@@ -57,20 +57,22 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.url_group_box)
         self.video_info_group_box = QtWidgets.QGroupBox(self.centralwidget)
         self.video_info_group_box.setStyleSheet("#video_info_group_box {\n"
-                                                "font: 10pt \"MS Shell Dlg 2\";\n"
-                                                "}")
+"font: 10pt \"MS Shell Dlg 2\";\n"
+"}")
         self.video_info_group_box.setObjectName("video_info_group_box")
         self.video_info_layout = QtWidgets.QVBoxLayout(self.video_info_group_box)
         self.video_info_layout.setContentsMargins(10, 10, 10, 10)
         self.video_info_layout.setSpacing(10)
         self.video_info_layout.setObjectName("video_info_layout")
-        self.video_img = QtWidgets.QLabel(self.video_info_group_box)
-        self.video_img.setStyleSheet("")
-        self.video_img.setText("")
-        self.video_img.setPixmap(QtGui.QPixmap("img/icon.ico"))
-        self.video_img.setAlignment(QtCore.Qt.AlignCenter)
-        self.video_img.setObjectName("video_img")
-        self.video_info_layout.addWidget(self.video_img)
+        self.video_thumbnail = QtWidgets.QLabel(self.video_info_group_box)
+        self.video_thumbnail.setMinimumSize(QtCore.QSize(1, 1))
+        self.video_thumbnail.setStyleSheet("")
+        self.video_thumbnail.setText("")
+        self.video_thumbnail.setPixmap(QtGui.QPixmap("img/Youtube.png"))
+        self.video_thumbnail.setScaledContents(False)
+        self.video_thumbnail.setAlignment(QtCore.Qt.AlignCenter)
+        self.video_thumbnail.setObjectName("video_thumbnail")
+        self.video_info_layout.addWidget(self.video_thumbnail)
         self.video_title = QtWidgets.QLabel(self.video_info_group_box)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -78,7 +80,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.video_title.sizePolicy().hasHeightForWidth())
         self.video_title.setSizePolicy(sizePolicy)
         self.video_title.setStyleSheet("font: 14pt \"MS Shell Dlg 2\";\n"
-                                       "padding: 1px;")
+"padding: 1px;")
         self.video_title.setObjectName("video_title")
         self.video_info_layout.addWidget(self.video_title)
         self.verticalLayout.addWidget(self.video_info_group_box)
@@ -89,8 +91,8 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.save_group_box.sizePolicy().hasHeightForWidth())
         self.save_group_box.setSizePolicy(sizePolicy)
         self.save_group_box.setStyleSheet("#save_group_box {\n"
-                                          "font: 10pt \"MS Shell Dlg 2\";\n"
-                                          "}")
+"font: 10pt \"MS Shell Dlg 2\";\n"
+"}")
         self.save_group_box.setFlat(False)
         self.save_group_box.setCheckable(False)
         self.save_group_box.setObjectName("save_group_box")
@@ -116,7 +118,8 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.file_name_label.sizePolicy().hasHeightForWidth())
         self.file_name_label.setSizePolicy(sizePolicy)
         self.file_name_label.setStyleSheet("padding-left: 25px;\n"
-                                           "")
+"")
+        self.file_name_label.setText("")
         self.file_name_label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.file_name_label.setObjectName("file_name_label")
         self.save_select_layout.addWidget(self.file_name_label)
@@ -130,7 +133,7 @@ class Ui_MainWindow(object):
         self.save_select_layout.addWidget(self.save_button)
         self.save_layout.addLayout(self.save_select_layout)
         self.progress_bar = QtWidgets.QProgressBar(self.save_group_box)
-        self.progress_bar.setProperty("value", 24)
+        self.progress_bar.setProperty("value", 0)
         self.progress_bar.setObjectName("progress_bar")
         self.save_layout.addWidget(self.progress_bar)
         self.verticalLayout.addWidget(self.save_group_box)
@@ -158,9 +161,8 @@ class Ui_MainWindow(object):
         self.url_group_box.setTitle(_translate("MainWindow", "1. Type video URL and press Enter"))
         self.url.setText(_translate("MainWindow", "URL:"))
         self.video_info_group_box.setTitle(_translate("MainWindow", "2. Wait until program found video"))
-        self.video_title.setText(_translate("MainWindow", "Video Title"))
+        self.video_title.setText(_translate("MainWindow", "Type URL"))
         self.save_group_box.setTitle(_translate("MainWindow", "3. Select video/audio resolution and click save button"))
-        self.file_name_label.setText(_translate("MainWindow", "file name"))
         self.save_button.setText(_translate("MainWindow", "Save"))
         self.menuLanguage.setTitle(_translate("MainWindow", "Language"))
         self.action_english.setText(_translate("MainWindow", "English"))
