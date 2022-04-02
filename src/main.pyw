@@ -8,21 +8,36 @@ from download import find_video, download
 from main_window import Ui_MainWindow
 
 
-class Window(QtWidgets.QMainWindow):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+class Runnable(QtCore.QRunnable):
+    def __init__(self, target, args):
+        super().__init__()
+        self.target = target
+        self.args = args
+
+    def run(self):
+        self.target(*self.args)
+
+
+def run_thread(target, args=tuple()):
+    pool = QtCore.QThreadPool.globalInstance()
+    runnable = Runnable(target, args)
+    pool.start(runnable)
+
+
+class Window(QtWidgets.QMainWindow, Ui_MainWindow):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.setupUi(self)
         self.thumbnail = QImage('img/Youtube.png')
         self.streams = {}
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
         self.showMaximized()
-        self.ui.url_input.returnPressed.connect(lambda: self.find_video())
-        self.ui.save_button.pressed.connect(self.save)
+        self.url_input.returnPressed.connect(lambda: run_thread(self.find_video))
+        self.save_button.pressed.connect(self.save)
 
     def find_video(self):
-        self.ui.video_title.setText('Please wait...')
-        title, thumbnail_data, self.streams = find_video(self.ui.url_input.text())
-        self.ui.video_title.setText(title)
+        self.video_title.setText('Please wait...')
+        title, thumbnail_data, self.streams = find_video(self.url_input.text())
+        self.video_title.setText(title)
 
         if thumbnail_data:
             self.thumbnail = QImage()
@@ -31,26 +46,30 @@ class Window(QtWidgets.QMainWindow):
             self.thumbnail = QImage('img/Youtube.png')
         self.resizeEvent(None)
 
-        self.ui.download_choose.clear()
+        self.download_choose.clear()
         for stream_info in self.streams.keys():
-            self.ui.download_choose.addItem(stream_info)
-        self.ui.download_choose.setCurrentIndex(0)
+            self.download_choose.addItem(stream_info)
+        self.download_choose.setCurrentIndex(0)
 
     def save(self):
-        download_choose = self.ui.download_choose.currentText()
+        download_choose = self.download_choose.currentText()
         if download_choose == '':
             return
-        title = self.ui.video_title.text()
+        title = self.video_title.text()
         path = self.get_save_path(download_choose, title)
         if not path:
             return
-        self.ui.file_name_label.setText(path[-1])
-        self.ui.video_title.setText('Downloading...')
-        result = download(self.streams[download_choose], path)
-        if result != 'done':
-            self.ui.video_title.setText(result)
-        else:
-            self.ui.video_title.setText(title)
+
+        def thread():
+            self.file_name_label.setText(path[-1])
+            self.video_title.setText('Downloading...')
+            result = download(self.streams[download_choose], path)
+            if result != 'done':
+                self.video_title.setText(result)
+            else:
+                self.video_title.setText(title)
+
+        run_thread(thread)
 
     def get_save_path(self, download_choose, title):
         directory = os.path.join(os.path.expanduser('~'), 'Videos', title)
@@ -63,9 +82,9 @@ class Window(QtWidgets.QMainWindow):
         return os.path.split(path)
 
     def resizeEvent(self, event):
-        size = self.ui.video_thumbnail.size()
+        size = self.video_thumbnail.size()
         pixmap = QPixmap(self.thumbnail).scaled(size.width(), size.height(), QtCore.Qt.KeepAspectRatio)
-        self.ui.video_thumbnail.setPixmap(pixmap)
+        self.video_thumbnail.setPixmap(pixmap)
         if event is not None:
             QtWidgets.QMainWindow.resizeEvent(self, event)
 

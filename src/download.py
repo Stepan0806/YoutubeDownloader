@@ -4,7 +4,7 @@ from pytube.exceptions import PytubeError
 from urllib.error import URLError
 
 
-messages = {
+MESSAGES = {
     "AgeRestrictedError": "Video is age restricted, and cannot be accessed without OAuth",
     "ExtractError": "Data extraction based error",
     "HTMLParseError": "HTML could not be parsed",
@@ -45,7 +45,7 @@ def find_video(url):
         return title, thumbnail_data, streams
     except PytubeError as e:
         e = repr(e).split('(')[0]
-        return messages[e], None, {}
+        return MESSAGES[e], None, {}
     except URLError as e:
         return str(e), None, {}
     except Exception as e:
@@ -58,7 +58,7 @@ def download(stream, path):
         return 'done'
     except PytubeError as e:
         e = repr(e).split('(')[0]
-        return messages[e]
+        return MESSAGES[e]
     except URLError as e:
         return str(e)
     except Exception as e:
